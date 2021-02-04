@@ -12,6 +12,9 @@
 
 Clone this repo into your local and run 'npm i' in the root file of the folder. This will install all neccesary dependancies and then type 'npm start' in terminal to begin hosting locally. navigate to your browser if not already open and put this url 'http://localhost:3000/' into the url address bar to find yourself on the workout tracker app. follow app instructions to create new workouts, add exercises to existing workouts and view all your workouts and activity.
 
+# Screenshot 
+![Capture1](https://user-images.githubusercontent.com/71415601/106838554-87739e80-666a-11eb-80fb-3eedbbc4b2c1.JPG)
+
 # Technologies used
 
 * Bootstrap 
