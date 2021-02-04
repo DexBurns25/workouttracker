@@ -26,4 +26,4 @@ Clone this repo into your local and run 'npm i' in the root file of the folder. 
 
 # Links
 - https://dexburns25.github.io/workouttracker/.
-- 
+- https://desolate-gorge-97507.herokuapp.com/
