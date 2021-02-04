@@ -1,33 +1,74 @@
 const express = require("express");
-const path = require("path");
+const logger = require("morgan");
 const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
-// const exerciseRoutes = require("./routes/exercises");
-// const workoutRoutes = require("./routes/workouts");
-const apiRoutes = require("./routes/api");
-const viewRoutes = require("./routes/views");
-
-const app = express();
+const path = require("path");
+​
+​
 const PORT = process.env.PORT || 3000;
-
-mongoose.connect(
-  "mongodb+srv://user:user@mycluster-i5mnv.mongodb.net/workouts?retryWrites=true&w=majority",
-  {
-    useNewUrlParser: true,
-    useFindAndModify: false
-  }
-);
-
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+​
+const app = express();
+​
+app.use(logger("dev"));
+​
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+​
 app.use(express.static("public"));
-
-app.use(apiRoutes);
-app.use(viewRoutes);
-// app.use(workoutRoutes);
-
-app.get("*", function(req, res) {
-  res.sendFile(path.join(__dirname, "./public/index.html"));
+​
+// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/workout", { useNewUrlParser: true });
+​
+mongoose.connect(
+    process.env.MONGODB_URI || 'mongodb://localhost/workout',
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+      useFindAndModify: false
+    }
+  );
+​
+require("./routes/api-routes.js")(app);
+​
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname + "/public/index.html"));
 });
+​
+app.get("/exercise", (req, res) => {
+    res.sendFile(path.join(__dirname + "/public/exercise.html"));
+});
+​
+app.get("/stats", (req, res) => {
+    res.sendFile(path.join(__dirname + "/public/stats.html"));
+});
+​
+app.listen(PORT, () => {
+    console.log(`App running on port ${PORT}!`);
+});
+Collapse
 
-app.listen(PORT, () => console.log("listening on port: ", PORT));
+
+
+white_check_mark
+eyes
+raised_hands
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
